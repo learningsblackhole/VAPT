@@ -1,0 +1,31 @@
+import os
+import argparse
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-ip", dest="ip", required=True, help="IP address to run the scan against")
+    return parser.parse_args()
+
+def run_nmap_scan(ip):
+    nmap_scan_cmd = f"nmap {ip} > port_scan.txt"
+    os.system(nmap_scan_cmd)
+    print("Nmap scan finished and output saved to port_scan.txt")
+
+def check_open_ports(ip):
+    with open("port_scan.txt", "r") as f:
+        data = f.read()
+        if "80/tcp open" in data or "443/tcp open" in data or "http" in data:
+            url = f"http://{ip}"
+            run_gobuster(url)
+        else:
+            print("No open ports for http service found")
+
+def run_gobuster(url):
+    gobuster_cmd = f"gobuster dir -u {url} -w /usr/share/wordlists/dirb/common.txt > gobust.txt"
+    os.system(gobuster_cmd)
+    print("Gobuster finished and output saved to gobust.txt")
+
+if __name__ == "__main__":
+    args = parse_args()
+    run_nmap_scan(args.ip)
+    check_open_ports(args.ip)

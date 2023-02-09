@@ -1,0 +1,69 @@
+Laptop with Android Studio 
+A rooted Android phone or an Android Emulator 
+
+setting up lab for non rooted device also here 
+_______________________________________
+**challenges with real devices**
+_______________________________________
+
+
+why rooted device ? to get better control over device root perms 
+rooting may not be avaialbe for all devices ; check if it can be done 
+
+check if bootloader can be unlocked ?
+if yes then we can unloack bootloader and flash a custom ROM
+
+if not then we need to use some root exploit to root the device 
+
+_______________________________________
+**Lab Setup using -x86 emulator **
+_______________________________________
+
+install android studio and check if adb is now available in your system path 
+spin up x86 emulator - which one ? 
+frida server for x86 architecture -- push it on the emulator 
+frida client on your android device 
+to avoid installing both seperately we can install a tool called objection :why ?: objection is built on top of frida it will take care of frida behind the scenes 
+
+avd manager --> create new virtual device --> phone pixel xl --> oreo --> api 27
+_______________________________________
+**Lab Setup with physical device**
+_______________________________________
+
+Appendix::
+Vulnerable Apps & VM - Download
+Download the vulnerable Apps from the link provided bellow:
+
+https://drive.google.com/file/d/1UFNjW3jGkWgk7N8t7jWGH9v07iq9Frew/view?usp=sharing
+
+
+
+Download backend server from the link provided below:
+
+https://drive.google.com/open?id=1_yk2udm8bhTWGMV_srbLI7VDllJYXOt5
+
+
+
+Usage: Import the ova file into virtual box and connect it in bridged network mode. So, this server will be reachable by the apps we are testing.
+
+Credentials to login:
+
+Username: securestore
+
+password: securestore
+
+
+
+Default user accounts available to login from the app (you can also register new account using signup feature):
+
++----+-----------------------+-
+
+username       | password
+
++----+-----------------------+-
+
+securestore    | securestore
+
+attacker       | attacker
+
++----+-----------------------+-

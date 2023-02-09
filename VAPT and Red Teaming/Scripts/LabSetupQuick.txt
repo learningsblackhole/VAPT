@@ -1,0 +1,17 @@
+automate below steps : 
+download files using provided links 
+unzip files where ever necessary 
+then install files
+
+
+Invoke-WebRequest -Uri <URL> -OutFile <FileName>
+Start-Process msiexec.exe -Wait -ArgumentList '/i <FileName>.msi /qn'
+Expand-Archive <FileName>.zip -DestinationPath <DestinationFolder>
+
+
+
+https://download-installer.cdn.mozilla.net/pub/firefox/releases/109.0.1/win32/en-US/Firefox%20Installer.exe
+https://www.7-zip.org/a/7z2201-x64.exe
+https://objects.githubusercontent.com/github-production-release-asset-2e65be/61954104/7890c930-b675-4137-93b9-ab4b36e1de96?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230209T060357Z&X-Amz-Expires=300&X-Amz-Signature=704e1753ace6a837f55891401cc79dac0a2c8b85203a80b9fa0fcc9cba438423&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=61954104&response-content-disposition=attachment%3B%20filename%3DPE-bear_0.5.5.7_x64_win_vs13.zip&response-content-type=application%2Foctet-stream
+https://az764295.vo.msecnd.net/stable/e2816fe719a4026ffa1ee0189dc89bdfdbafb164/VSCodeUserSetup-x64-1.75.0.exe
+https://objects.githubusercontent.com/github-production-release-asset-2e65be/104732438/0736ae6d-33fa-4f7f-813a-d638cbb037ee?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230209%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230209T061850Z&X-Amz-Expires=300&X-Amz-Signature=cfeb1d1a3c2851d7c58b37a3739378febb4d4876c6496cc4106e74b28cca22ed&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=104732438&response-content-disposition=attachment%3B%20filename%3DCutter-v2.1.2-Windows-x86_64.zip&response-content-type=application%2Foctet-stream
