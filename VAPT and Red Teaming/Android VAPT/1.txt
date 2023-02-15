@@ -1,0 +1,54 @@
+install apk tool from github 
+isntall jdk from oracle
+
+smali is assembly equivalent 
+
+how to decompile an apk using apktool ?
+$apktool d abc.apk
+
+how to recompile application using apktool 
+
+open android manifest.xml 
+add more permissions to the application and recompile it 
+for example add new line in androidmanifest.xml file 
+<uses-permission android:name="android.permission.READ_SMS"/>
+
+
+
+apktool b abc
+
+b is for build 
+
+this is known as patching the application 
+now our application has 
+andoird 6.0 or higher giving permissions here is not enough we need to get users affirmation/consent as well.
+to allow access of specific permissions 
+
+
+dex2jar and jd-gui :: why ? to great for viewing the source code from apk file 
+
+install dex2jar from github /pxb1988/dex2jar
+jd-gui from java-decompiler.github.io
+ 
+
+
+we get jar file from classess.dex file using dex2jar 
+we will use d2j-dex2jar.sh
+
+./d2j-dex2jar.sh abc.apk
+a jar file will be produced 
+use jd-gui to open this jar file 
+
+now we can read and explore source code to understand 
+
+Traffic analysis 
+what is ssl pinning ?
+
+redirecting application traffic to proxy tool such as burpsuite 
+if https is used we need burp ca cert to be installed on the device 
+
+if ssl pinning is implemented then ca cert is not enough to intercept https traffic 
+we need to do ssl pinning bypass 
+
+how to identify 
+

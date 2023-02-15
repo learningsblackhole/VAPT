@@ -1,0 +1,8 @@
+write a simple hello world program in x86asm
+write a simple hello world program in x64asm 
+
+understand required sys calls to be made 
+how to make a syscall 
+what are registers 
+how to load registers 
+structure of a asm program; where to store what 

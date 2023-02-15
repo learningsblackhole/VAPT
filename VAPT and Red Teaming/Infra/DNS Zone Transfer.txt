@@ -1,0 +1,2 @@
+allabouttesting.org/top-5 commands to test dns zone transfer in 2 minutes 
+$dnsrecon -d domainname -t axfr 

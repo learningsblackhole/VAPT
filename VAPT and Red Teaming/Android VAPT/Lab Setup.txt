@@ -20,12 +20,47 @@ _______________________________________
 _______________________________________
 
 install android studio and check if adb is now available in your system path 
-spin up x86 emulator - which one ? 
+spin up x86 emulator  
 frida server for x86 architecture -- push it on the emulator 
 frida client on your android device 
 to avoid installing both seperately we can install a tool called objection :why ?: objection is built on top of frida it will take care of frida behind the scenes 
 
-avd manager --> create new virtual device --> phone pixel xl --> oreo --> api 27
+android studio --> click icon for avd manager --> create new virtual device --> phone pixel xl --> oreo --> api 27
+go to frida github releases and download the frida server for android x86.xz
+unzip the frida server and push it to android device using adb
+adb push frida-server /data/local/tmp/
+adb push src dst 
+/data/local/tmp/ is known writable path just like /tmp in linux 
+
+adb shell 
+	to connect to remote machine 
+and check if the file is pushed or not 
+chmod +x frida-server 
+./frida-server
+run your frida server on target android device 
+now we need frida client to interact with this frida server but we will not download it directly instead we will download objection that is built upon frida 
+
+
+install objection now 
+
+google objection github page 
+objection is available in pip 
+pip install objection 
+
+add frida and objection to system paths to make them avlble anywhere 
+confirm with 
+which frida
+which objection
+
+
+
+frida server is already running 
+
+using frida client now 
+frida-ps -Uai
+
+to check if I can hook into target application 
+
 _______________________________________
 **Lab Setup with physical device**
 _______________________________________

